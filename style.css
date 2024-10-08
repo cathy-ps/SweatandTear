@@ -1,0 +1,99 @@
+body, button{
+    font-family: "Open Sans" sans-serif;
+    background-color: #f2f2f2;
+    padding: 20px;
+}
+
+.semesterHeader {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.semesterHeader h1 {
+    margin: 0;
+}
+
+.semesterHeader button {
+    margin: 0;
+}
+
+#addSemester {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10px 20px;
+    background-color: #eae5da;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    margin-bottom: 10px;
+    color: brown;
+}
+
+#addSemester svg {
+    margin-right: 8px;
+  }
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 20px 0;
+}
+table, th, td {
+    border: 1px solid #ddd;
+}
+
+th, td {
+    padding: 12px;
+    text-align: left;
+}
+
+th {
+    background-color: #f2f2f2;
+    font-weight: bold;
+}
+
+input {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    box-sizing: border-box;
+}
+
+#addSubject {
+    display: block;
+    width: 100%;
+    padding: 10px 20px;
+    color: grey;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    margin-bottom: 10px;
+    background-color: #eae5da;
+    margin: 10px auto;
+}
+
+#addSubject:hover {
+    display: block;
+}
+
+#for-more-subjects:hover #addSubject{
+    display: block;
+}
+
+.calc {
+    background-color: #4CAF50;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    display: flex;
+    margin: 0 auto;
+}
+
+.calc:hover {
+    background-color: #3e8e41;
+}

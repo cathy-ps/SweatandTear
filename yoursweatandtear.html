@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style.css" />
+    <title>Your Sweat and Tear</title>
+  </head>
+  <body>
+    <div id="semesters">
+      <section id="semester1">
+        <div class="semesterHeader">
+          <h1 class="semester"></h1>
+          <button type="button" onclick="addSubject()">+ Add Subject</button>
+        </div>
+        <table>
+          <thead>
+            <tr>
+              <th>Subjects</th>
+              <th>Credit Hours</th>
+              <th>Scores</th>
+            </tr>
+          </thead>
+          <tbody id="subjectsBody1">
+            <tr>
+              <td><input type="text" id="subject1_1" /></td>
+              <td><input type="number" id="creditHours1_1" /></td>
+              <td><input type="number" id="grade1_1" /></td>
+            </tr>
+          </tbody>
+        </table>
+      </section>
+    </div>
+    <button type="button" onclick="addSemester()">Add Semester</button>
+    <button type="button" onclick="calculateGPA()">Calculate GPA</button>
+    <div id="result">GPA:</div>
+    <script src="script.js"></script>
+  </body>
+</html>
