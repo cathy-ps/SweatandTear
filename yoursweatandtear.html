@@ -4,36 +4,47 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="style.css" />
-    <title>Your Sweat and Tear</title>
+    <title>GPA Calculator</title>
   </head>
+
   <body>
-    <div id="semesters">
-      <section id="semester1">
-        <div class="semesterHeader">
-          <h1 class="semester"></h1>
-          <button type="button" onclick="addSubject()">+ Add Subject</button>
-        </div>
-        <table>
-          <thead>
-            <tr>
-              <th>Subjects</th>
-              <th>Credit Hours</th>
-              <th>Scores</th>
-            </tr>
-          </thead>
-          <tbody id="subjectsBody1">
-            <tr>
-              <td><input type="text" id="subject1_1" /></td>
-              <td><input type="number" id="creditHours1_1" /></td>
-              <td><input type="number" id="grade1_1" /></td>
-            </tr>
-          </tbody>
-        </table>
-      </section>
-    </div>
-    <button type="button" onclick="addSemester()">Add Semester</button>
-    <button type="button" onclick="calculateGPA()">Calculate GPA</button>
-    <div id="result">GPA:</div>
+    <h1>GPA Calculator</h1>
+    <main>
+      <div class="semester-container">
+        <section id="semester1" class="semester">
+          <div class="semesterHeader">
+            <h1>Semester 1</h1>
+            <button type="button" class="newSubjectBtn" onclick="addSubject(1)">
+             <img class="addIcon" src="code-plus.png" alt="add subject">
+            </button>
+          </div>
+          <table>
+            <thead>
+              <tr>
+                <th>Subjects</th>
+                <th>Credits</th>
+                <th>Scores</th>
+                <th>Grade Points</th>
+              </tr>
+            </thead>
+            <tbody id="subjectsBody1">
+              <tr>
+                <td><input type="text" id="subject1_1" /></td>
+                <td><input type="number" id="credit1_1" min="0" /></td>
+                <td><input type="number" id="score1_1" min="0" max="100" /></td>
+                <td><input type="text" id="grade1_1" /></td>
+              </tr>
+            </tbody>
+          </table>
+
+          <div class="result">
+            <p id="gpaResult1"></p>
+            <button onclick="calculateGPA(1)">Calculate GPA</button>
+          </div>
+        </section>
+      </div>
+    </main>
+    <button onclick="addSemester()" id="newSemester">+ Add New Semester</button>
     <script src="script.js"></script>
   </body>
 </html>

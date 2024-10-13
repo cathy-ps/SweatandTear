@@ -1,74 +1,74 @@
 let fieldCount = 1;
 let semesterCount = 1;
-
-function addSubject() {
-    fieldCount++;
-    const rowCount = tbody.getElementsByTagName('tr').length + 1;
-    const newRow = document.createElement('tr');
-    newRow.innerHTML = `
-        <td><input type="text" id="subject${semesterId}_${rowCount}" /></td>
-        <td><input type="number" id="creditHours${semesterId}_${rowCount}" /></td>
-        <td><input type="number" id="grade${semesterId}_${rowCount}" /></td>
+function createSubjectRow(semesterCount, fieldCount) {
+    return `
+        <tr>
+            <td><input type="text" id="subject${semesterCount}_${fieldCount}"></td>
+            <td><input type="number" id="credit${semesterCount}_${fieldCount}" min="0"></td>
+            <td><input type="number" id="score${semesterCount}_${fieldCount}" min="0" max="100"></td>
+            <td><input type="text" id="grade${semesterCount}_${fieldCount}"></td>
+        </tr>
     `;
-    tbody.appendChild(newRow);
 }
 
+function addSubject(semesterCount) {
+    const tableBody = document.getElementById(`subjectsBody${semesterCount}`);
+    fieldCount++;
+    const newRow = createSubjectRow(semesterCount, fieldCount);
+    tableBody.insertAdjacentHTML('beforeend', newRow);
+}
+
+// Create a function to generate a new semester block
 function addSemester() {
     semesterCount++;
-    const semestersDiv = document.getElementById('semesters');
-    const newSemesterDiv = document.createElement('section');
-    newSemesterDiv.id = `semester${semesterCount}`;
-    newSemesterDiv.innerHTML = `
-        <div class="semesterHeader">
+    const newSemesterSection = document.createElement('section');
+    newSemesterSection.id = `semester${semesterCount}`;
+    newSemesterSection.className = 'semester-container';
+    newSemesterSection.innerHTML = `
+         <div class="semesterHeader">
             <h1 class="semester">Semester ${semesterCount}</h1>
-            <button type="button" onclick="addSubject(${semesterCount})">Add Subject</button>
+            <button class="add-subject-btn" onclick="addSubject(${semesterCount})">+ Add Subject</button>
         </div>
-        <table>
-            <thead>
-                <tr>
-                    <th>Subjects</th>
-                    <th>Credit Hours</th>
-                    <th>Scores</th>
-                </tr>
-            </thead>
-            <tbody id="subjectsBody${semesterCount}">
-                <tr>
-                    <td><input type="text" id="subject${semesterCount}_1" /></td>
-                    <td><input type="number" id="creditHours${semesterCount}_1" /></td>
-                    <td><input type="number" id="grade${semesterCount}_1" /></td>
-                </tr>
-            </tbody>
-        </table>
+        <div class="table-container">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Subjects</th>
+                        <th>Credit Hours</th>
+                        <th>Scores</th>
+                        <th>Grade Points</th>
+                    </tr>
+                </thead>
+                <tbody id="subjectsBody${semesterCount}">
+                    ${createSubjectRow(semesterCount, 1)}
+                </tbody>
+            </table>
+        </div>
+        
+        <div class="result">
+            <p id="gpaResult${semesterCount}"></p>
+            <button onclick="calculateGPA(${semesterCount})">Calculate GPA</button>
+        </div>
     `;
-    semestersDiv.appendChild(newSemesterDiv);
+    document.querySelector('main').appendChild(newSemesterSection);
 }
 
-function calculateGPA() {
-    let totalCreditHours = 0;
-    let sumOfCalculatedValues = 0;
+function calculateGPA(semester) {
+    const rows = document.querySelectorAll(`#subjectsBody${semester} tr`);
+    let totalCredits = 0;
+    let weightedSum = 0;
 
-    for (let s = 1; s <= semesterCount; s++) {
-        const tbody = document.getElementById(`subjectsBody${s}`);
-        const rows = tbody.getElementsByTagName('tr');
+    rows.forEach((row, index) => {
+        const subject = document.getElementById(`subject${semester}_${index + 1}`).value;
+        const credit = parseFloat(document.getElementById(`credit${semester}_${index + 1}`).value) || 0;
+        const score = parseFloat(document.getElementById(`score${semester}_${index + 1}`).value) || 0;
 
-        for (let i = 0; i < rows.length; i++) {
-            const row = rows[i];
-            const cells = row.getElementsByTagName('td');
+        console.log(`Subject: ${subject}, Credit: ${credit}, Score: ${score}`);
 
-            const creditHours = parseInt(cells[1].getElementsByTagName('input')[0].value);
-            const grade = parseInt(cells[2].getElementsByTagName('input')[0].value);
-    
-            console.log(creditHours, grade);
-            // Calculate the result
-            const result = creditHours * grade;
-            console.log(result);
+        totalCredits += credit;
+        weightedSum += credit * score;
+    });
 
-            sumOfCalculatedValues += result;
-            totalCreditHours += creditHours;
-        }
-    }
-
-    const gpa = sumOfCalculatedValues / totalCreditHours;
-    const gpaDisplay = document.getElementById('result');
-    gpaDisplay.textContent = `GPA: ${gpa.toFixed(2)}`;
+    const gpa = totalCredits > 0 ? (weightedSum / totalCredits).toFixed(2) : '0.00';
+    document.getElementById(`gpaResult${semester}`).textContent = `Your Semester GPA is ${gpa}`;
 }

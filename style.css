@@ -1,6 +1,6 @@
-body, button{
-    font-family: "Open Sans" sans-serif;
-    background-color: #f2f2f2;
+body {
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    background-color: #f4f4f4;
     padding: 20px;
 }
 
@@ -8,6 +8,7 @@ body, button{
     display: flex;
     justify-content: space-between;
     align-items: center;
+    margin-bottom: 20px;
 }
 
 .semesterHeader h1 {
@@ -31,10 +32,85 @@ body, button{
     color: brown;
 }
 
-#addSemester svg {
-    margin-right: 8px;
-  }
+/* From Uiverse.io by aasisodiya */ 
+#newSemester {
+    display: block;
+    margin: 10px auto;
+    max-width: 800px;
+    width: 100%;
 
+    background-color: #eee;
+    color: lightcoral;
+    border: none;
+    padding: 1rem;
+    border-radius: 6px;
+    box-shadow: 0 0.4rem #dfd9d9;
+    cursor: pointer;
+}
+
+#newSemester:active {
+    color: white;
+    box-shadow: 0 0.2rem #dfd9d9;
+    transform: translateY(0.2rem);
+}
+
+#newSemester:hover:not(:disabled) {
+    background: lightcoral;
+    color: white;
+    text-shadow: 0 0.1rem #02010151;
+}
+
+#newSemester:disabled {
+    cursor: auto;
+    color: grey;
+}
+
+/* old version */
+/* #newSemester { 
+    display: block;
+    background-color: #eae5da;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    color: grey;
+    width: 100%;
+    margin: 10px auto;
+    max-width: 800px;
+}
+
+#newSemester:hover {
+    background-color: #d4cec4;
+} */
+
+
+.semester-container {
+    background-color: #f9f9f9;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 20px;
+    margin-bottom: 30px;
+}
+
+.table-container {
+    margin-top: 20px;
+}
+
+#addSemester addIcon {
+    margin-right: 8px;
+}
+
+.container {
+    max-width: 800px;
+    margin: 0 auto;
+    background-color: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+h1 {
+    text-align: center;
+    color: #333;
+}
 table {
     width: 100%;
     border-collapse: collapse;
@@ -43,26 +119,84 @@ table {
 table, th, td {
     border: 1px solid #ddd;
 }
-
 th, td {
-    padding: 12px;
+    width: 25%; /* This sets all columns to equal width */
+    padding: 10px;
     text-align: left;
+    border: 1px solid #ddd;
 }
-
 th {
     background-color: #f2f2f2;
-    font-weight: bold;
 }
-
 input {
     width: 100%;
     padding: 8px;
-    border: 1px solid #ccc;
-    border-radius: 8px;
     box-sizing: border-box;
+    border: 1px solid #ccc;
+    border-radius: 4px;
 }
 
-#addSubject {
+.newSubjectBtn {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background-color: rgb(232, 225, 225);
+    border: none;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0px 0px 0px 4px rgba(180, 160, 255, 0.253);
+    cursor: pointer;
+    transition-duration: 0.3s;
+    overflow: hidden;
+    position: relative;
+}
+
+.addIcon {
+    width: 25px;
+    transition-duration: 0.3s;
+}
+
+.newSubjectBtn addIcon path {
+    fill: white;
+}
+
+
+.newSubjectBtn:hover {
+    width: 140px;
+    border-radius: 50px;
+    transition-duration: 0.3s;
+    background-color: rgb(181, 160, 255);
+    align-items: center;
+}
+
+.newSubjectBtn:hover .addIcon {
+    /* width: 20px; */
+    transition-duration: 0.3s;
+    transform: translateY(-200%);
+}
+
+.newSubjectBtn::before {
+    position: absolute;
+    bottom: -20px;
+    content: "+ Add Subject";
+    color: white;
+    /*ransition-duration: .3s; */
+    font-size: 0px;
+}
+
+.newSubjectBtn:hover::before {
+    font-size: 13px;
+    opacity: 1;
+    bottom: unset;
+    /* transform: translateY(-30px); */
+    transition-duration: 0.3s;
+}
+  
+  
+
+/* #addSubject {
     display: block;
     width: 100%;
     padding: 10px 20px;
@@ -77,23 +211,42 @@ input {
 
 #addSubject:hover {
     display: block;
-}
+} */
 
-#for-more-subjects:hover #addSubject{
-    display: block;
-}
 
-.calc {
+button {
+    padding: 10px 20px;
     background-color: #4CAF50;
     color: white;
-    padding: 10px 20px;
     border: none;
-    border-radius: 6px;
+    border-radius: 5px;
     cursor: pointer;
-    display: flex;
-    margin: 0 auto;
 }
 
-.calc:hover {
-    background-color: #3e8e41;
+.result {
+    text-align: center;
+    color: #333;
+    display:  flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+button #calc {
+    display: block;
+    margin-right: 0px;
+}
+
+button:hover {
+    background-color: #45a049;
+}
+
+.motivational-text {
+    text-align: center;
+    font-style: italic;
+    color: #888;
+}
+.how-it-works {
+    text-align: center;
+    font-size: 14px;
+    color: #555;
 }
